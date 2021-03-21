@@ -1,23 +1,13 @@
 function sumFibonacci(num) {
-    if(num === 1)
-    return 1;
+  if (num <= 1) return num;
 
-  var fib = [];
-  fib[0] =1;
-  fib[1]=1;
-  for(var i=2; i<=num;i++){
-    fib[i]=fib[i-2]+fib[i-1];
+  const arrFib = [1, 1];
+  let nextFib = 0;
+
+  while ((nextFib = arrFib[0] + arrFib[1]) <= num - 1) {
+  arrFib.unshift(nextFib);
   }
-
-  fib = fib.filter(function(val){
-    return (val % 2 !== 0) && (val<=num);
-  });
-
-  fib = fib.reduce(function(a,b){
-    return a+b;
-  });
-
-  return fib;
+  return arrFib.filter(x => x % 2 != 0).reduce((a, b) => a + b);
 }
 console.log(sumFibonacci(1));
 console.log(sumFibonacci(10));
